@@ -1,0 +1,44 @@
+.item1 {
+    grid-area: myArea1;
+      height:300px;
+      align-content: center;
+  }
+  .item3 {
+    
+    text-align: justify;
+    grid-area: myArea2;
+      height:300px;
+  align-content:center;
+  }
+  .item4 {
+    grid-area: myArea3;
+      height:350px
+  }
+  
+  .item2 {
+    grid-area: sideMenu;
+    height:700px;
+  }
+  
+  .grid-container {
+    display: grid;
+    grid-template-areas:  'myArea1 myArea1 myArea2 myArea2 myArea2 sideMenu sideMenu'
+                          'myArea1 myArea1 myArea2 myArea2 myArea2 sideMenu sideMenu'
+                          'myArea3 myArea3 myArea3 myArea3 myArea3 sideMenu sideMenu'
+                          'myArea3 myArea3 myArea3 myArea3 myArea3 sideMenu sideMenu'
+                          'myArea3 myArea3 myArea3 myArea3 myArea3 sideMenu sideMenu';
+                          
+    grid-gap: 10px;
+    background-color:blueviolet;
+    padding: 10px;
+   
+  }
+  
+  .grid-container > div {
+    background-color: rgba(255, 255, 255, 0.8);
+    text-align: center;
+    padding: 20px 0;
+    font-size: 30px;
+    
+  }
+  

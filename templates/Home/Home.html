@@ -1,0 +1,172 @@
+{% extends 'Base.html' %}
+{% load static %}
+{% block title %}Website-Home{% endblock title %}
+{% block Homeactive %}active{% endblock Homeactive %}
+{% block body %}
+<style>
+		.card{
+			background-color: blue; 
+		}
+
+		table{
+			border: 2px solid black;
+		}
+
+		.button {
+		  border: none;
+		  color: white;
+		  padding: 10px 20px;
+		  text-align: center;
+		  text-decoration: none;
+		  display: inline-block;
+		  font-size: 15px;
+		  margin: 4px 2px;
+		  transition-duration: 0.4s;
+		  cursor: pointer;
+		}
+		
+		.button1{
+		  background-color: white; 
+		  color: black; 
+		  border: 2px solid #4CAF50;
+		}
+		
+		.button1:hover {
+		  background-color: #4CAF50;
+		  color: white;
+		} 
+
+		.button2{
+		  background-color:cyan; 
+		  color: black; 
+		  border: 2px solid #1D79CF;
+		}
+		
+		.button2:hover {
+		  background-color: cyan;
+		  color: white;
+		} 
+
+		.vl {
+  			border-left: 3px solid grey;
+  			height: 220px;
+			}
+
+		table{
+		border: 5px solid blue;
+		} 	
+
+		  td { 
+            text-align:center; 
+			font-size: 100%;
+			border-bottom: 3px solid blue;
+			
+        }
+
+		 thead tr { 
+     
+            font-size: 115%;
+			font-style: bold;
+			border-bottom-style: solid; 
+        }
+
+		table {
+			/* make the border continuous (without gaps between columns) */
+			border-collapse: collapse;
+		}
+</style>
+<center>
+    <font color="YELLOW" size="16">TODAY AUCTIONS</font>
+</center>
+<table width=100% bgcolor="white">
+    <thead>
+        <tr>
+            <td>Product Images</td>
+            <td></td>
+            <td>Name of Product</td>
+            <td>Details</td>
+            <td>Status</td>
+            <td>Click to Pre-Register</td>
+        </tr>
+    </thead>
+    <tbody>
+    {% for p in todayAuc %}
+        <tr>
+            <td><img src="{{ p.Product_img.url }}" height="225" width="225"></td>
+            <td>
+                <div class="vl"></div>
+            </td>
+            <td>{{ p.Product_name }}</td>
+            <td>{{ p.Product_desc }}</td>
+            <td>{{ p.Auction_pref_time }}<br><br>{{ p.Auction_pref_date }}</span></td>
+            <td>
+            <a href="{% url 'auctionRegister' p.id%}"><button type="button"  class="button button2">Register</button></a>
+            </td>
+        </tr>
+    {% endfor %}
+    </tbody>
+</table>
+</font>
+<br>
+<center>
+    <font color="Yellow" size="16">UPCOMING AUCTIONS </font>
+</center>
+<table width=100% bgcolor="white">
+
+    <thead>
+        <tr>
+            <td>Product Images</td>
+            <td></td>
+            <td>Name of Product</td>
+            <td>Details</td>
+            <td>Status</td>
+            <td>Click to Pre-Register</td>
+        </tr>
+    </thead>
+    <tbody>
+    {% for p in upcomingAuc %}
+        <tr>
+            <td><img src="{{ p.Product_img.url }}" height="225" width="225"></td>
+            <td>
+                <div class="vl"></div>
+            </td>
+            <td>{{ p.Product_name }}</td>
+            <td>{{ p.Product_desc|linebreaksbr }}</td>
+            <td>{{ p.Auction_pref_time }}<br><br>{{ p.Auction_pref_date }}</span></td>
+            <td><a href="{% url 'auctionRegister' p.id%}"><button type="button" class="button button2">Register</button></a></td>
+        </tr>
+    {% endfor %}
+    </tbody>
+</table>
+</font>
+<center><br>
+    <font color="black" size="20">To Check Out More Auctions &nbsp;&nbsp;</font><br>
+    <button type="button" class="button button1">Click Me!</button>
+</center>
+<footer>
+    <br>
+    <font color="white">
+        <table width="100%" cellspacing="6" bgcolor="black" class="table2">
+            <tr>
+                <th></th>
+                <th></th>
+                <th>FOLLOW US ON</th>
+                <th></th>
+                <th></th>
+            </tr>
+            <tr>
+                <td></td>
+                <td></td>
+                <td>
+                    <center><img src="{% static 'images/facebook.png' %}" height="40px" width="60px">&nbsp
+                        &nbsp<img src="{% static 'images/instagram.png' %}" height="40px" width="60px">&nbsp
+                        &nbsp<img src="{% static 'images/twitter.png' %}" height="40px" width="60px">
+                    </center>
+                </td>
+                <td></td>
+                <td></td>
+        </table>
+    </font>
+
+
+    {% endblock body %}

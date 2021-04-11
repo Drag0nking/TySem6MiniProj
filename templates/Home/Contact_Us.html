@@ -1,0 +1,67 @@
+{% extends 'Base.html' %}
+{% load static %}
+{% block title %}Website-Home{% endblock title %}
+{% block Homeactive %}active{% endblock Homeactive %}
+{% block body %}
+<style>
+    .contactus {
+        background-image: url("{% static 'images/Contact_Us.jpg' %}");
+        background-repeat: no-repeat;
+        background-position: center;
+        height: 10%%;
+        width: 100%%;
+        background-size: cover;
+    }
+</style>
+<div class='contactus'>
+    <div style="padding:10px">
+        <img src="{% static 'images/Logo.png' %}" class="img-fluid" style="width:50px; float:left; padding:10px"><h1>AucOn</h1>
+        Information
+    </div>
+    <div style="padding:10px">
+        <h3>Reach Us..</h3>
+            <address style="font-size: 100%">
+                999, AucOn HeadQuarters, Juhu Beach, MUMBAI&nbsp;&nbsp;&nbsp;&nbsp;||&nbsp;&nbsp;&nbsp;&nbsp;
+                <i class="fa fa-phone"></i>: +91 838 104 2664&nbsp;&nbsp;&nbsp;&nbsp;||&nbsp;&nbsp;&nbsp;&nbsp;
+                <i class="fa fa-envelope"></i>:
+                <a href="mailto:lazeez@food.net">aucon@gmail.com</a>
+            </address>
+    </div>
+
+    <form accept-charset="utf-8" action="/handleContactUs" method='POST'>
+        {% csrf_token %}
+        <center>
+        <h3>Send us your Feedback</h3>
+            <fieldset style="width:900px;"><b>
+                    <label for="Full-Name">First Name: </label>
+                    <input type="text" name="Full_name" placeholder="Full Name" style="border-radius: 5px"
+                        required></input>
+                    &nbsp;&nbsp;&nbsp;<label for="Full-Name">Last Name: </label>
+                    <input type="text" name="Last_name" placeholder="Last Name" style="border-radius: 5px"
+                        required></input>
+                    <br><br>
+                    <label for="email-addr">Email Address: </label>
+                    <input type="email" name="email_addr" id="email_addr" placeholder="acb@xyz.com"
+                        style="border-radius: 5px" required="">
+                    <br><br>
+                    <label for="Phone Number">Phone Number: </label>
+                    <input type="phone" name="ph_no" id="ph_no" style="border-radius: 5px" placeholder="+91 987654321">
+                    <br><br>
+                    <!--<label for="Address">Address:</label><br>
+                    <textarea name="Text1" cols="50" rows="3" required name="ADDRESS" style="border-radius: 5px" placeholder="Enter Your Address Here..." style="border-radius: 5px"></textarea>
+                    <br><br>-->
+                    <label for="Content">Content: </label><br>
+                    <textarea cols="45" rows="5" name="Content" id="Content" placeholder="Describe your Content.."
+                        style="border-radius: 5px" required=""></textarea>
+                    <!--<input type="hidden" name="_subject" id="email-subject" value="Complaint Form Submission">-->
+                </b></fieldset>
+        </center>
+        <br>
+        <center>
+            <input type="submit" style="border-radius: 5px" value="Submit">
+            <input type="reset" style="border-radius: 5px" value="Reset">
+        </center>
+    </form>
+    <hr>
+</div>
+{% endblock body %}

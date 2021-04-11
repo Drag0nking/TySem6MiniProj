@@ -1,0 +1,31 @@
+{% autoescape off %}
+<p style="color: blue;"><h1>Hi {{ Client.Uname }},</h1></p>
+<h2>Your Pre-Registration is accepted successfully!<br>
+<b style="color: red;">Note->Auction Passcode is shared with you here. Please donot share it with others. On violation strick actions can be taken.</b></h2>
+<h3>Details about Auction:</h3><hr>
+<h3>Auction Passcode: {{Product.Auction_Passcode}}</h3><hr>
+<h3>Your Details</h3>
+User Name: {{ Client.Uname }}<br>
+First Name: {{ Client.First_name }}&nbsp;&nbsp;,Last Name: {{ Client.Last_name }}<br>
+Email: {{Client.Email}}<br>
+<h3>Product and Product Owner Details</h3>
+Owner Name: {{Product.Product_owner}}<br>
+Product Name: {{Product.Product_name}}<br>
+Product Description: {{Product.Product_desc}}<br>
+Auction Date: {{Product.Auction_pref_date}}&nbsp;&nbsp;,Auction Timing: {{Product.Auction_pref_time}}<br>
+Starting Bid: {{Product.Starting_Bid}}<br>
+
+<h2>Before entering Auction remember:<br>
+<b style="color: red;">
+Camera must be kept on for Auction. If it is not on then change you settings and grant video permission to camera.<br>
+To increase you bid amount show 5 fingers (/your hand) in box shown in camera for 3-5 seconds.<br>
+There will be a timer of 30 seconds. If 30 seconds are over then winner with highest bid amount will win. If bid amount is increased within this 30 seconds than timer will restart.<br>
+No suspicious activity allowed.<br>
+Finally, do enjoy and hope you win Auction!<br>
+</b></h2>
+
+Thank You,<br>
+Regards,<br>
+AucOn<br><hr>
+**Pls do not reply to this mail!!<hr>
+{% endautoescape %}

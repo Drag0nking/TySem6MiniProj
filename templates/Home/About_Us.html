@@ -1,0 +1,35 @@
+{% extends 'Base.html' %}
+{% load static %}
+{% block title %}Website-Home{% endblock title %}
+{% block Homeactive %}active{% endblock Homeactive %}
+{% block body %}
+<style>
+.aboutus{
+    background-image: url("{% static 'images/AboutUs.png' %}");
+    background-repeat: no-repeat;
+    background-position: center;
+    height: 100%;
+    width: 100%;
+    background-size: cover;
+}
+</style>
+<div class='aboutus'>
+    <p style="color:white; background: rgba(0, 0, 0, 0.6);">
+    Our website is an Online Live Auction Website, on which auctions for various items can be held and any number of users can participate in the auction. Our quality of Support is unmatched. We take support one step further by tailoring our replies to suit your knowledge, expectations and personality. We welcome and act on your feedback. What sets us apart from the competition is that we are passionate about the services we provide. We are always looking to improve every aspect of our business. From more features all the way to more frequent tutorials.<br>
+    <br>General Features of Our website:-<br><br>
+    Hand recognition for Bidding<br>
+    Responsive design: great user experience on desktop, tablets, and mobile devices<br>
+    System emails per event e.g., new auctions, auction ends, bidder is outbid<br>
+    Profile management for both sellers and bidders<br>
+    Review System<br><br>
+    We have built up auctioning expertise that puts us a cut above other competitor. No need to look any further- we are the best solution for online auctioning.<br>
+    </p>
+</div>
+<!--<footer align="center">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    AucOn INDIA:- Copyrights Reserved
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    Email Us: aucon@gmail.com
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    Contact Us: +91 838 104 2664
+</footer>-->
+{% endblock body %}

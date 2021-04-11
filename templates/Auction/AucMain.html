@@ -1,0 +1,116 @@
+{% extends 'Auction_Base.html' %}
+{% load static %}
+{% block title %}Website-Home{% endblock title %}
+{% block Homeactive %}active{% endblock Homeactive %}
+{% block body %}
+<!DOCTYPE html>
+<html>
+
+<head>
+  <link rel="stylesheet" href="{% static 'styling/AucMain.css' %}">
+</head>
+
+<body>
+
+  <div class="grid-container">
+    <div class="item1">Product Image</br></br>
+      <div style="">
+        <img src="{{ Product.Product_img.url }}" style="width:250px; height:200px" class="rounded-circle"
+          alt="User-Profile-Image" />
+      </div>
+    </div>
+    <div class="item2">
+      <div style="width:100%;height:30%;"><Strong>Winning bid </Strong></br>
+        <p id='winning'></p>
+        <p id='timer'></p>
+      </div>
+
+      </br>
+      <div style="width: 100%; display: table;">
+
+        <div style="display: table-row;">
+          <Strong>Bidders&nbsp;&nbsp;&nbsp;|&nbsp;Initial Bid</Strong>
+          <div id="display"></div>
+
+
+        </div>
+      </div>
+    </div>
+    <div class="item3"><Strong>Auction Details:</Strong>
+      <p><b><i><u>Product Name:</u> {{Product.Product_name}}</b></i></p>
+      <!--Use filter linebreaks or linebreaksbr to print on newline.-->
+      <p><b><i><u>Owner Name:</u> {{Product.Product_owner}}</b></i></p>
+      <p><b><i><u>Product Discription:</u> {{Product.Product_desc|linebreaksbr}}</b></i></p>
+      <p><b><i><u>Starting Bid:</u> {{Product.Starting_Bid}}</b></i></p>
+    </div>
+    <div class="item4"><img src="{% url 'facecam_feed' Product.id%}" width="450" height="350"></div>
+  </div>
+
+  <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="
+    crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+    integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+    crossorigin="anonymous"></script>
+  <script>
+  var winning_user;
+  var seconds=30;
+    $(document).ready(function () {
+      setInterval(function () {
+        
+        $.ajax({
+          type: 'GET',
+          url: "{% url 'getUsers' Product.id %}",
+          success: function (response) {
+            $('#display').empty();
+            var count = 0;
+            var w;
+            for (var key in response.users) {
+   
+              var t = "<p><b><i>" + response.users[key].ClientUsername + "&nbsp;&nbsp;&nbsp;|&nbsp;" + response.users[key].ClientInitialBid + "</b></i></p>";
+              if (count == 0) {
+                var temp=winning_user;
+                winning_user=response.users[key].ClientUsername;
+                count = 1;
+                var w = t;
+              }
+              $("#display").append(t);
+
+
+            }
+            if(winning_user.localeCompare(temp)==0)
+            {
+                
+                seconds=seconds-1;
+               if(seconds==0)
+               {
+                location.replace("{% url 'endAuction' Product.id %}"); 
+
+               }
+            }
+            else
+            {
+              seconds=30;
+            } 
+            document.getElementById("timer").innerHTML =seconds+ "s ";
+            $('#winning').empty();
+            $('#winning').append(w);
+
+          },
+          error: function (response) { alert({{ Product.id }});
+      }
+  }
+    );
+
+  }, 1000);
+
+  });
+
+
+  </script>
+
+
+
+</body>
+
+</html>
+{% endblock body %}

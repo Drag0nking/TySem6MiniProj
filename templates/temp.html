@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <!-- Meta, title, CSS, favicons, etc. -->
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>{% block page_title %}Dhanlaxmi {% endblock page_title %}</title>
+
+  {% load static %}
+<!--  {% load guardian_tags %}-->
+
+  {% block css %}
+    <!-- Bootstrap -->
+    <link href="{% static 'gentelella/vendors/bootstrap/dist/css/bootstrap.min.css' %}" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link href="{% static 'gentelella/vendors/font-awesome/css/font-awesome.min.css' %}" rel="stylesheet">
+    <!-- Custom Theme Style -->
+    <link href="{% static 'gentelella/build/css/custom.css' %}" rel="stylesheet">
+    <link href="{% static 'core/css/print.css' %}" rel="stylesheet">
+    <link href="{% static 'core/css/core.css' %}" rel="stylesheet">
+    <link href="{% static 'core/css/base.css' %}" rel="stylesheet">
+  {% endblock css %}
+</head>
+<body class="nav-md">
+  <div class="container body">
+    <div class="main_container">
+      <div class="col-md-3 left_col">
+        <div class="left_col scroll-view">
+          <div class="navbar nav_title navbar-fixed-top" style="border: 0;">
+            <a href="{% url 'home' %}" class="site_title" title="{{ request.current_company.name|capfirst }}">
+              <i class="fa fa-suitcase" style="border: 0;margin-top: 6px;margin-left: 6px"></i><span>Dhanlaxmi</span>
+            </a>
+          </div>
+          <div class="top_nav_offset"></div>
+          <div class="clearfix"></div>
+          <br/>
+          <!-- sidebar menu -->
+          <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
+            <div class="menu_section">
+              <h3> General </h3>
+              <ul class="nav side-menu">
+                <li>
+                  <a>
+                    <i class="fa fa-table"> </i> Masters <span class="fa fa-chevron-down"> </span>
+                  </a>
+                  <ul class="nav child_menu ">
+                    <li>
+                      <div class="btn-group div_1" role="group">
+                        <a class="btn btn-outline-light btn_lft" role="button" href="{% url 'list_unit' %}" ><span class="pull-left">Unit</a>
+                        <a class="btn btn-outline-light btn_rgt" role="button" name="unit-master" href="{% url 'new_unit' %}"> <span class="fa fa-plus"> </span></a>
+                      </div>
+                    </li>
+                    <li>
+                      <div class="btn-group div_1" role="group">
+                        <a class="btn btn-outline-light btn_lft" role="button" href="{% url 'list_unit_charge' %}" ><span class="pull-left">Unit Charge</a>
+                        <a class="btn btn-outline-light btn_rgt" role="button" name="unit_charge-master" href="{% url 'new_unit_charge' %}"> <span class="fa fa-plus"> </span></a>
+                      </div>
+                    </li>
+
+                    <li>
+                      <div class="btn-group div_1" role="group">
+                        <a class="btn btn-outline-light btn_lft" role="button" href="{% url 'list_material' %}" ><span class="pull-left">Unit</a>
+                        <a class="btn btn-outline-light btn_rgt" role="button" name="material-master" href="{% url 'new_material' %}"> <span class="fa fa-plus"> </span></a>
+                      </div>
+                    </li>
+
+                    <li>
+                      <div class=" btn-group div_1" role="group">
+                        <a class=" btn btn-outline-light btn_ctr" role="button" name="people-master" href=""><span class="pull-left">Create User</a>
+                      </div>
+                    </li>
+                    <li>
+                      <div class="btn-group div_1" role="group">
+                        <a class="btn btn-outline-light btn_lft" role="button" href="{% url 'list_company' %}"><span class="pull-left">Company</a>
+                        <a class="btn btn-outline-light btn_rgt" role="button" name="bank-master"href="{% url 'new_company' %}"><span class="fa fa-plus"></a>
+                      </div>
+                    </li>
+                    <li>
+                      <div class="btn-group div_1" role="group">
+                        <a class="btn btn-outline-light btn_lft" role="button" href="{% url 'list_client' %}"><span class="pull-left">Client Info</a>
+                        <a class="btn btn-outline-light btn_rgt" role="button" name="client-master" href="{% url 'new_client' %}"><span class="fa fa-plus"></span></a>
+                      </div>
+                    </li>
+                    <li>
+                      <div class=" btn-group div_1" role="group">
+                        <a class=" btn btn-outline-light btn_ctr" role="button" name="report-segment-master" href="company_info_report/"><span class="pull-left">Company Information Report</span></a>
+                      </div>
+                    </li> 
+                  </ul>
+                </li>
+                <li>
+                  <a>
+                    <i class="fa fa-ticket"></i>Entries<span class="fa fa-chevron-down"></span>
+                  </a>
+                  <ul class="nav child_menu">
+                    <li>
+                      <div class="btn-group div_1" role="group">
+                        <a class="btn btn-outline-light  btn_lft" role="button" href="{% url 'list_inward' %}"><span class="pull-left">Inward</a>
+                        <a class="btn btn-outline-light  btn_rgt" role="button" name="inward-entries"href="{% url 'new_inward' %}"><span class="fa fa-plus"></span></a>
+                      </div>
+                    </li>
+                    <li>
+                      <div class="btn-group div_1" role="group">
+                        <a class="btn btn-outline-light  btn_lft" role="button" href="{% url 'list_outward' %}"><span class="pull-left">Outward</a>
+                        <a class="btn btn-outline-light  btn_rgt" role="button" name="outward_etkt-entries"href="{% url 'new_outward' %}"><span class="fa fa-plus"></span></a>
+                      </div>
+                    </li>
+                  </ul>
+                </li>
+                  <li>
+                    <a><i class="fa fa-bar-chart"></i>Reports<span class="fa fa-chevron-down"></span></a>
+                    <ul class="nav child_menu">
+                      <li>
+                        <div class="btn-group div_1" role="group">
+                          <a class="btn btn-outline-light btn_ctr " name="supplier_report" href=""> <span class="pull-left">Supplier/Customer Entries</a>
+                        </div>
+                      </li>
+                      <li>
+                        <div class="btn-group div_1" role="group">
+                          <a class="btn btn-outline-light btn_ctr " name="client_report" href="{% url 'ReportMail' %}"> <span class="pull-left">Client Report</a>
+                        </div>
+                      </li>
+                    </ul>
+                  </li>
+                </ul>
+              </div>
+            </div>
+            <!-- /sidebar menu -->
+            <div class="sidebar-footer hidden-small" style="display: none;">
+              <a data-toggle="tooltip" data-placement="top" title="" data-original-title="Settings">
+                <span class="glyphicon glyphicon-cog" aria-hidden="true"></span>
+              </a>
+              <a data-toggle="tooltip" data-placement="top" title="" data-original-title="FullScreen">
+                <span class="glyphicon glyphicon-fullscreen" aria-hidden="true"></span>
+              </a>
+              <a data-toggle="tooltip" data-placement="top" title="" data-original-title="Lock">
+                <span class="glyphicon glyphicon-eye-close" aria-hidden="true"></span>
+              </a>
+              <a data-toggle="tooltip" data-placement="top" title="" href="login.html" data-original-title="Logout">
+                <span class="glyphicon glyphicon-off" aria-hidden="true"></span>
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- top navigation -->
+        <div class="top_nav">
+          <nav class="navbar navbar-fixed-top">
+            <div class="nav_menu">
+              <div class="container">
+                <div class="nav toggle" style="padding-top: 3px;">
+                  <a id="menu_toggle"><i class="fa fa-bars"></i></a>
+                </div>
+                <div class="row">
+                  <div class="col-lg-8 col-md-7 col-sm-7 col-xs-7">
+                    <form class="search">
+                      <div class="input-group">
+                        <div class="input-group-btn">
+                          <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <span id="search-scope"> {% if scope %}{{ scope }}{% else %}Account{% endif %}</span>
+                            <span class="caret" style="margin-left: 2px;"></class>
+                          </button>
+                            <ul class="dropdown-menu">
+                              <!-- <li class="search-scope" ><a style="padding-top: 5px;height: 23px;">All</a></li> -->
+                              <!-- <li role="separator" class="divider"></li> -->
+                              <!-- <li class="search-scope" data-id=":vou" ><a>Voucher</a></li> -->
+                              <li class="search-scope" data-id=":acc" ><a>Account</a></li>
+                              <!-- <li class="search-scope" data-id=":acg" ><a>Account Group</a></li> -->
+                            </ul>
+                          </div>
+                        <input type="text" class="form-control search effect-1" placeholder="Search for..." {% if query %}value="{{ query }}"{% endif %}><span class="focus-border"></span>
+                        <span class="input-group-btn">
+                          <button class="btn btn-default search btn-6" type="submit"><span><i class="fa fa-search" style="height:20px;"></i></span></button>
+                        </span>
+                      </div><!-- /input-group -->
+                    </form>
+                  </div><!-- /.col-lg-8 -->
+                  <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
+                        <ul class="nav navbar-nav navbar-right" style="width:100%;">
+                          <li class="" id="userdetail">
+                            {% if user.is_authenticated %}
+                              <a href="javascript:;" class="user-profile dropdown-toggle" data-toggle="dropdown" aria-expanded="false" style="font-size:20px">
+                                {{ request.user.first_name }}
+                                <span class=" fa fa-angle-down"></span>
+                              </a>
+                              <ul class="dropdown-menu dropdown-usermenu pull-right">
+                                <li><a href="/people/{{ request.user.id }}/"><i class="fa fa-user pull-right"></i>Profile</a></li>
+                                <li><a href="{% url 'password_change' %}" target="_blank"><i class="pull-right">****</i>Change password</a></li>
+                                <li><a href="{% url 'logout' %}"><i class="fa fa-sign-out pull-right"></i> Log Out</a></li>
+                              </ul>
+                            {% else %}
+                                <a href="javascript:;" class="user-profile dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+                                  <i class="fa fa-user" style="font-size: 20px; padding-right: 5px"></i>
+                                  <span class=" fa fa-angle-down" style="font-size: 15px"></span>
+                                </a>
+                                <ul class="dropdown-menu dropdown-usermenu pull-right">
+                                  <li><a href="{% url 'login' %}" name="login"><i class="fa fa-sign-in pull-right"></i>Login</a></li>
+                                </ul>
+                              </li>
+                            {% endif %}
+                          </li>
+                          {% block create_new %}{% endblock %}
+                        </ul>
+                      </div>
+                </div>
+              </div>
+            </div>
+          </nav>
+        </div>
+        <!-- /top navigation -->
+
+        <div class="right_col" role="main">
+          <div class="top_nav_offset"></div>
+          {% block content %}{% endblock content %}
+        </div>
+      </div>
+    </div>
+
+    <footer></footer>
+
+    {% block js %}
+      <script src="{% static 'gentelella/vendors/jquery/dist/jquery.min.js' %}"></script>
+      <script src="{% static 'gentelella/vendors/bootstrap/dist/js/bootstrap.min.js' %}"></script>
+      <script src="{% static 'gentelella/build/js/custom.min.js' %}"></script>
+      <script src="{% static 'core/js/mousetrap.min.js' %}"></script>
+      <script src="{% static 'core/js/search.js' %}"></script>
+    {% endblock js %}
+</body>
+</html>

@@ -1,0 +1,173 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title></title>
+    <style>
+        body {
+            background-color: black;
+
+        }
+
+        #type1 {
+            background: rgba(250, 250, 250, 0.5);
+
+            width: 900px;
+            background-size: 100px 100px;
+            border: 5px solid white;
+            border-radius: 12px;
+            padding: 20px;
+        }
+
+        #button {
+            display: inline-block;
+            padding: 15px 20px;
+            font-size: 20px;
+            cursor: pointer;
+            text-align: center;
+            text-decoration: none;
+            outline: none;
+            color: #fff;
+            background-color: #4CAF50;
+            border: none;
+            border-radius: 5px;
+            box-shadow: 0 4px #999;
+
+
+        }
+    </style>
+
+    <script>
+        /*function validate() {
+            var firstName = document.forms["form1"]["ip1"].value;
+
+            var emailID = document.forms["form1"]["e1"].value;
+            atpos = emailID.indexOf("@");
+            dotpos = emailID.lastIndexOf(".");
+            var phone = document.forms["form1"]["phone"].value;
+            var password = document.forms["form1"]["p1"].value;
+            var repass = document.forms["form1"]["p2"].value;
+            if (firstName == "") {
+                alert(" Name cannot be empty");
+                return false;
+            }
+            else if (atpos < 1 || (dotpos - atpos < 2)) {
+                alert("Invalid Email Id ,Enter the Valid Email Id")
+                document.form1.email.focus();
+                return false;
+            }
+            else if (isNaN(phone) || phone.indexOf(" ") != -1) {
+                alert("Enter 10 digit Phone Number")
+                return false;
+            }
+            else if (phone.length > 10 || phone.length < 10) {
+                alert("Enter a valid Phone number");
+                return false;
+            }
+            else if (password.length < 8) {
+                alert("password too short");
+                return false;
+            }
+            else if (password.localeCompare(repass) != 0) {
+                alert("passwords don't match");
+                return false;
+            }
+            else {
+                return true;
+            }
+        }*/
+    </script>
+
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+        crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+        crossorigin="anonymous"></script>
+
+</head>
+
+<body>
+    <br><br>
+    <center>
+        <div id="type1">
+            <h1 style="color:white">Signup</h1>
+            <hr>
+            <form method="POST" action="/handleSignup" enctype="multipart/form-data">
+                {% csrf_token %}
+                <h3>Personal Details:</h3>
+                <hr>
+                <label for="First_name">First Name: </label>
+                <input type="text" name="F_name" placeholder="First Name" style="border-radius: 5px" required></input>
+                &nbsp;&nbsp;&nbsp;&nbsp;
+                <label for="First_name">Last Name: </label>
+                <input type="text" name="L_name" placeholder="Last Name" style="border-radius: 5px" required></input>
+                <br><br>
+                <label for="Username">User Name: </label>
+                <input type="text" name="Signup_Uname" placeholder="Enter Username" style="border-radius: 5px"
+                    required></input>
+                <br><br>
+                <label for="User_pic">Profile Pic: </label>
+                <input type="file" name="user_pic" accept="image/*">
+                <br><br>
+                <label for="DOB">Date OF Birth:</label>
+                <input type="date" name="DOB" style="border-radius: 5px" required></input>
+                <br><br>
+                <label for="Gender">Gender: </label>
+                <input type="radio" name="gender" style="border-radius: 5px" value="Male">Male</input>
+                <input type="radio" name="gender" style="border-radius: 5px" value="Female">Female</input>
+                <input type="radio" name="gender" style="border-radius: 5px" value="Others">Others</input>
+                <br><br>
+                <label for="aadhar">Aadhar Card: </label>
+                <input type="text" name="Signup_aadhar" placeholder="Enter Aadhar Card value" style="border-radius: 5px"
+                    required></input>
+                <br><br>
+                <h3>Contact Details:</h3>
+                <hr>
+                <label for="email-address">Email Address: </label>
+                <input type="email" name="signup_email" id="signup_email" placeholder="acb@xyz.com"
+                    style="border-radius: 5px" required="">
+                &nbsp;&nbsp;&nbsp;&nbsp;
+                <label for="Contact">Contact Number: </label>
+                <input type="phone" name="contact" id="contact" style="border-radius: 5px" placeholder="+91 987654321">
+                <br><br>
+                <label for="Address">Address:</label><br>
+                <textarea cols="50" rows="3" required name="Signup_Address" style="border-radius: 5px"
+                    placeholder="Enter Your Address Here..." style="border-radius: 5px"></textarea>
+                <br><br>
+                <h3>Work Details:</h3>
+                <hr>
+                <label for="Work_Status">Work Status: </label>
+                <input type="radio" name="work_status" style="border-radius: 5px" value="Employed">Employed</input>
+                <input type="radio" name="work_status" style="border-radius: 5px"
+                    value="UnEmployed">UnEmployed</input><br><br>
+                <label for="Work_Desc">Describe work status: <h4>(Note: Enter none if unemployed)</h4></label>
+                <textarea cols="50" rows="3" required name="desc_work" style="border-radius: 5px"
+                    placeholder="Enter where you work..." style="border-radius: 5px"></textarea>
+                <br>
+                <hr>
+                <label for="Password">Password: </label>
+                <input type="password" name="pwd1" placeholder="Enter Password" style="border-radius: 5px"
+                    required></input>
+                &nbsp;&nbsp;&nbsp;&nbsp;
+                <label for="Password">Confirm Password: </label>
+                <input type="password" name="pwd2" placeholder="Re-enter Password" style="border-radius: 5px"
+                    required></input>
+                <br><br>
+                <input type="checkbox" class="check-box" required><span>I agree to the terms and
+                    conditions.</span>&nbsp;&nbsp;&nbsp;
+                    To view <a href="/TnC">Click here</a>.
+                    <br><br>
+                <center><input id="button" type="submit" value="Sign up"><br><br>
+                    <a href="/Login">Already have an account? Login here.</a>
+                </center>
+            </form>
+        </div>
+    </center>
+</body>
+
+</html>

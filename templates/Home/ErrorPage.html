@@ -1,0 +1,34 @@
+{% load static %}
+<html lang="en" dir="ltr">
+
+<head>
+<link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<link rel="stylesheet" href="{% static 'styling/ErrorPage.css' %}">
+<script src="//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
+<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+</head>
+
+<body>
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="error-template">
+                <h1>
+                    Oops!</h1>
+                <h2>
+                    404 Not Found</h2>
+                    {% for i in Error %}
+                    <div class="error-details">
+                        <h4 style="color:red">{{i}}</h4>
+                    </div>
+                    {% endfor %}
+                <div class="error-actions">
+                    <a href="/" class="btn btn-primary btn-lg"><span class="glyphicon glyphicon-home"></span>Back to Home</a>
+                    <a href="/Contact_Us" class="btn btn-default btn-lg"><span class="glyphicon glyphicon-envelope"></span>Contact Support</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

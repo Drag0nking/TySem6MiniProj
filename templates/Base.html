@@ -1,0 +1,121 @@
+{% load static %}
+{% csrf_token %}
+<html lang="en" dir="ltr">
+
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel='shortcut icon' href="{% static 'images/Logo.png' %}" type="image/x-icon">
+	<title>{% block title %}{% endblock title %}</title>
+	<link rel="stylesheet" href="{% static 'styling/base_style.css' %}">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css">
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+		integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" charset="utf-8"></script>
+</head>
+<style>
+	h4 {
+		color: white;
+		text-align: center;
+		font-size=35px;
+	}
+</style>
+
+<body>
+	<!-- Optional JavaScript -->
+	<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+		integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+		crossorigin="anonymous"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+		integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+		crossorigin="anonymous"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+		integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+		crossorigin="anonymous"></script>
+	<input type="checkbox" id="check"></input>
+	<!--header area start-->
+	<header>
+		<label for="check">
+			<i class="fas fa-bars" id="sidebar_btn"></i>
+		</label>
+		<div class="left_area">
+			<!--<img src="{% static 'images/Logo.png' %}" height="20px" width="20px">-->
+			<h3>Website Name</h3>
+		</div>
+		<div class="right_area">
+			{% if not user.is_authenticated %}
+			<a href="/Signup" class="signup_btn">Signup</a>
+			<a href="/Login" class="login_btn">Login</a>
+			{% endif %}
+			<!--<a href="/Login_Register" class="signup_btn">Login (or) Register</a>-->
+		</div>
+	</header>
+	<!--header area end-->
+	<!--mobile navigation bar start-->
+	<!--<div class="mobile_nav">
+      <div class="nav_bar">
+        <img src="1.png" class="mobile_profile_image" alt="">
+        <i class="fa fa-bars nav_btn"></i>
+      </div>
+      <div class="mobile_nav_items">
+        <a href="#"><i class="fas fa-desktop"></i><span>Dashboard</span></a>
+        <a href="#"><i class="fas fa-cogs"></i><span>Components</span></a>
+        <a href="#"><i class="fas fa-table"></i><span>Tables</span></a>
+        <a href="#"><i class="fas fa-th"></i><span>Forms</span></a>
+        <a href="#"><i class="fas fa-info-circle"></i><span>About</span></a>
+        <a href="#"><i class="fas fa-sliders-h"></i><span>Settings</span></a>
+      </div>
+    </div>-->
+	<!--mobile navigation bar end-->
+	<!--sidebar start-->
+	<div class="sidebar">
+		<!--<div class="profile_info">
+        <img src="1.png" class="profile_image" alt="">
+        <h4>Jessica</h4>
+      </div>-->
+		{% if user.is_authenticated %}
+		<h4>Welcome {{request.user}}</h4>
+		<hr>
+		{% endif %}
+		<a href="/"><i class="fas fa-home"></i><span>Home</span><span class="sr-only">(current)</span></a>
+		<a href="/Auc_Page"><i class="fas fa-gavel"></i><span>Auction</span></a>
+		<a href="/About_Us"><i class="fas fa-info-circle"></i><span>About Us</span></a>
+		<a href="/Contact_Us"><i class="fas fa-phone"></i><span>Contact Us</span></a>
+		{% if user.is_authenticated %}
+		<a href="/Profile"><i class="fas fa-user"></i><span>Profile</span></a>
+		<a href="/sellProduct"><i class="fas fa-shopping-cart"></i><span>Sell Your Product</span></a>
+		<a href="/Logout" method="post"><i class="fas fa-sign-out-alt"></i><span>Logout</span></a>
+		{% endif %}
+	</div>
+	<!--sidebar end-->
+
+	<div class="content">
+			<div class="card">
+				<!--<p>Write Content/Body here...</p>-->
+				{% block body %}{% endblock body %}
+			</div>
+		</div>
+
+<!--{% for message in messages %}
+	<div class="container-fluid p-0">
+		<div class="alert alert-{{ message.tags }} alert-dismissible" role="alert">
+		<strong>NOTE -> </strong>{{ message }}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+			<span aria-hidden="true">&times;</span>
+		</button>
+		</div>
+	</div>
+{% endfor %}-->
+
+		<script type="text/javascript">
+			$(document).ready(function () {
+				$('.nav_btn').click(function () {
+					$('.mobile_nav_items').toggleClass('active');
+				});
+			});
+		</script>
+
+</body>
+
+</html>

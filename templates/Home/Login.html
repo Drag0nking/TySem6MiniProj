@@ -1,0 +1,64 @@
+{% load static %}
+<!DOCTYPE html>
+
+<html>
+<head>
+
+  <title></title>
+  <style type="text/css">
+    body {
+      background-color: black;
+      margin-top: 50px;
+      color: white;
+    }
+
+    .type1 {
+      background: rgba(250, 250, 250, 0.5);
+      background-size: 100px 100px;
+      border: 5px solid white;
+      padding: 20px;
+      width: 450px;
+    }
+
+    .button {
+      display: inline-block;
+      padding: 15px 20px;
+      font-size: 20px;
+      cursor: pointer;
+      text-align: center;
+      text-decoration: none;
+
+      outline: none;
+      color: #fff;
+      background-color: #4CAF50;
+      border: none;
+      border-radius: 5px;
+      box-shadow: 0 4px #999;
+    }
+  </style>
+</head>
+
+<body>
+  <br><br>
+  <center>
+    <div class="type1">
+      <h1 style="color:white">Login</h1>
+      <hr>
+      <form action="/handleLogin" method="POST">
+        {% csrf_token %}
+        <label for="Username">User name: </label>
+        <input type="text" name="login_Uname" placeholder="Enter Username" style="border-radius: 5px" required></input>
+        <br><br>
+        <label for="email-address">Email Address: </label>
+        <input type="email" name="login_email" placeholder="acb@xyz.com" style="border-radius: 5px">
+        <br><br>
+        <label for="Password">Password: </label>
+        <input type="password" name="login_pwd" placeholder="Enter Password" style="border-radius: 5px" required></input>
+        <br><br>
+        <center><input type="submit" class="button" value="Login"><br><br>
+        <a href="/forgotPwd" style="color:rgb(52, 232, 235)">Forget password?</a><br><br>
+        <a href="/Signup" style="color:rgb(52, 232, 235)">New User! Signup here.</a></center><hr>
+      </form>
+  </center>
+</body>
+</html>
